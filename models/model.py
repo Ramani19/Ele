@@ -2,10 +2,17 @@ import torch
 import torch.nn as nn
 import torch.nn.functional as F
 from torchvision.models import VGG as TVGG
-from torchvision.models.vgg import load_state_dict_from_url, model_urls, cfgs
+from torch.utils.model_zoo import load_url as load_state_dict_from_url
+# from torchvision.models._utils import _IMAGENET_CATEGORIES
+from torchvision.models.vgg import cfgs
 
 from .modules.spectral_norm import spectral_norm as SpectralNorm
 from .elegant import Generator
+
+from torchvision.models import vgg16, VGG16_Weights
+
+# Use this to get a pre-trained model
+model = vgg16(weights=VGG16_Weights.IMAGENET1K_V1)
 
 
 def get_generator(config):
